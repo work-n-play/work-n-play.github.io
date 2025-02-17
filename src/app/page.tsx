@@ -7,46 +7,43 @@ export default function Home() {
   interface Post {
     id: string;
     title: string;
-    thumbnail: string;
+    url: string;
     permalink: string;
   }
 
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    fetch("https://www.reddit.com/r/Workspaces/new.json?limit=25")
+    fetch("https://www.reddit.com/r/Workspaces/new.json?limit=99")
       .then((res) => res.json())
       .then((data) => setPosts(data.data.children.map((child: any) => child.data)));
   }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
-
-
       {/* Landing Page */}
-      <header className=" min-h-screen flex flex-col justify-center text-center py-20 px-4 bg-blue-600 text-white">
+      <header className="min-h-screen flex flex-col justify-center text-center py-20 px-4 bg-blue-600 text-white">
         <h1 className="font-bold">Welcome to Work-n-Play</h1>
         <p className="mt-2">Discover the best workspaces from around the world!</p>
       </header>
 
       {/* Latest Posts Gallery */}
-      <section className="min-h-screen flex flex-col justify-center items-center p-10">
+      <section className="min-h-screen flex flex-col justify-center items-center p-4">
         <h2 className="text-2xl py-10 font-semibold mb-4">Latest Workspaces</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-          {posts.map((post) =>
-            post.thumbnail && post.thumbnail !== "self" ? (
+        <div className="flex flex-wrap justify-center gap-4">
+          {posts
+            .filter((post) => post.url && /\.(jpg|jpeg|png|gif)$/i.test(post.url))
+            .map((post) => (
               <a key={post.id} href={`https://www.reddit.com${post.permalink}`} target="_blank" rel="noopener noreferrer" className="relative">
                 <img
-                  src={post.thumbnail}
+                  src={post.url}
                   alt="Workspace"
                   className="w-full h-56 object-cover rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105"
                 />
               </a>
-            ) : null
-          )}
+            ))}
         </div>
       </section>
-
 
       {/* Follow Us Section */}
       <section id="follow-us" className="flex flex-col min-h-screen justify-center items-center bg-black px-4 text-center py-8 sm:py-16 md:py-24">
@@ -66,13 +63,8 @@ export default function Home() {
               <p className="mt-4 text-gray-600">Join our Reddit community for discussions and advice.</p>
             </div>
           </a>
-
         </div>
       </section>
-
-
-
-
 
       {/* Footer */}
       <footer className="text-center py-6 bg-black text-white">
