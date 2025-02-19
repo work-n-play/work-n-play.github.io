@@ -23,7 +23,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-100 text-gray-900">
       {/* Landing Page */}
       <header className="min-h-screen flex flex-col justify-center text-center py-20 px-4 bg-blue-600 text-white">
-        <h1 className="font-bold">Welcome to Work-n-Play</h1>
+        <h1 className="font-bold">Welcome to Work N Play</h1>
         <p className="mt-2">Discover the best workspaces from around the world!</p>
       </header>
 
@@ -56,7 +56,7 @@ export default function Home() {
               <p className="mt-4 text-gray-600">Join us on Discord for the latest updates and tips.</p>
             </div>
           </a>
-          <a href="https://www.reddit.com/r/WorkSpaces" target="_blank" rel="noopener noreferrer" className="bg-white rounded-lg shadow-lg overflow-hidden block">
+          <a href="https://www.reddit.com/r/Workspaces" target="_blank" rel="noopener noreferrer" className="bg-white rounded-lg shadow-lg overflow-hidden block">
             <img src="reddit.png" alt="Reddit" className="w-full h-48 object-cover" />
             <div className="p-6">
               <h3 className="text-2xl font-semibold text-gray-800">Reddit</h3>
@@ -68,7 +68,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="text-center py-6 bg-black text-white">
-        <p>&copy; 2025 Work-n-Play. All Rights Reserved.</p>
+        <p>&copy; 2025 Work N Play. All Rights Reserved.</p>
       </footer>
     </div>
   );
